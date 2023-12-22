@@ -341,6 +341,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
         if (mZoomEnabled && Util.hasDrawable((ImageView) v)) {
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    setAllowParentInterceptOnEdge(true);
                     ViewParent parent = v.getParent();
                     // First, disable the Parent from intercepting the touch
                     // event
@@ -704,6 +705,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
             mHorizontalScrollEdge = HORIZONTAL_EDGE_RIGHT;
         } else {
             mHorizontalScrollEdge = HORIZONTAL_EDGE_NONE;
+            setAllowParentInterceptOnEdge(false);
         }
         // Finally actually translate the matrix
         mSuppMatrix.postTranslate(deltaX, deltaY);

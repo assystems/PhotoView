@@ -39,8 +39,8 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     static class SamplePagerAdapter extends PagerAdapter {
 
-        private static final int[] sDrawables = {R.drawable.wallpaper, R.drawable.wallpaper, R.drawable.wallpaper,
-            R.drawable.wallpaper, R.drawable.wallpaper, R.drawable.wallpaper};
+        private static final int[] sDrawables = {R.drawable.sample1, R.drawable.sample1, R.drawable.sample1,
+            R.drawable.sample1, R.drawable.sample1, R.drawable.sample1};
 
         @Override
         public int getCount() {

@@ -20,6 +20,7 @@ import android.graphics.Matrix;
 import android.graphics.Matrix.ScaleToFit;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,7 +40,7 @@ import android.widget.OverScroller;
 public class PhotoViewAttacher implements View.OnTouchListener,
     View.OnLayoutChangeListener {
 
-    private static float DEFAULT_MAX_SCALE = 3.0f;
+    private static float DEFAULT_MAX_SCALE = 5.0f;
     private static float DEFAULT_MID_SCALE = 1.75f;
     private static float DEFAULT_MIN_SCALE = 1.0f;
     private static int DEFAULT_ZOOM_DURATION = 200;
@@ -341,6 +342,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
         if (mZoomEnabled && Util.hasDrawable((ImageView) v)) {
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    Log.d("+++", "true");
                     setAllowParentInterceptOnEdge(true);
                     ViewParent parent = v.getParent();
                     // First, disable the Parent from intercepting the touch
@@ -700,10 +702,12 @@ public class PhotoViewAttacher implements View.OnTouchListener,
         } else if (rect.left > 0) {
             mHorizontalScrollEdge = HORIZONTAL_EDGE_LEFT;
             deltaX = -rect.left;
-        } else if (rect.right <= viewWidth) {
+        } else if (rect.right < viewWidth) {
+            Log.d("+++", "rect.right < viewWidth");
             deltaX = viewWidth - rect.right;
             mHorizontalScrollEdge = HORIZONTAL_EDGE_RIGHT;
         } else {
+            Log.d("+++", "else:false");
             mHorizontalScrollEdge = HORIZONTAL_EDGE_NONE;
             setAllowParentInterceptOnEdge(false);
         }
